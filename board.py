@@ -59,11 +59,16 @@ class Board:
                     case 6:
                         white_pawn = Pawn("White", x, y)
                         self.board_pieces[y][x] = white_pawn
+                    case 0:
+                        white_pawn = Pawn("White", x, y)
+                        self.board_pieces[y][x] = white_pawn
                     
 
 board = Board(800, 800)
+counter = 0
+print(board.board_pieces)
 
 for x in board.board_pieces:
-    for item in x:
-        if item.name == "Pawn":
-            print(item.x_coordinates)
+    for z in x:
+        coordinates = (z.x_coordinates, z.y_coordinates)
+        print(coordinates)
