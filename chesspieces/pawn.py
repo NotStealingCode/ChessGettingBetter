@@ -6,14 +6,18 @@ class Pawn(Piece):
         self.x_coordinates = x_coordinates
         self.y_coordinates = y_coordinates
         self.name = "Pawn"
-    
+
     def get_possible_moves(self, pieces_location):
         board_pieces_locations = pieces_location
         moves = []
-        if self.color == "White":
-            advance_once = self.y_coordinates + 1
-            advance_twice = self.y_coordinates + 2
-            if self.y_coordinates == 1:
+        advance_once = self.y_coordinates - 1 if self.color == "White" else self.y_coordinates + 1
+        advance_twice = self.y_coordinates - 2 if self.color == "White" else self.y_coordinates + 2
+        starting_position = 6 if self.color == "White" else 1
+        ending_position = 0 if self.color == "White" else 7
+        enemy = "Black" if self.color == "White" else "White"
+
+        if self.y_coordinates != ending_position:
+            if starting_position:
                 moves.append((self.x_coordinates, advance_once))
                 moves.append((self.x_coordinates, advance_twice))
             else:
@@ -25,13 +29,31 @@ class Pawn(Piece):
                 if is_occupied and is_not_empty:
                     moves = []
                     break
-        
-            if len(moves) == 2:
+
+            EXPECTED_NUMBER_OF_MOVES = 2
+            if len(moves) == EXPECTED_NUMBER_OF_MOVES:
                 for piece_location in board_pieces_locations[advance_twice]:
                     is_occupied = moves[1] == (piece_location.x_coordinates, piece_location.y_coordinates)
                     is_not_empty = piece_location is not None
                     if is_occupied and is_not_empty:
                         moves.remove((self.x_coordinates, advance_twice))
+            
+            LEFT_OFFSET = -1
+            RIGHT_OFFSET = 1
+            attack_right = board_pieces_locations[advance_once][self.x_coordinates + RIGHT_OFFSET].color == enemy
+            if attack_right:
+                moves.append((self.x_coordinates + RIGHT_OFFSET, advance_once))
+            
+            attack_left = board_pieces_locations[advance_once][self.x_coordinates + LEFT_OFFSET].color == enemy
+            if attack_left:
+                moves.append((self.x_coordinates + LEFT_OFFSET, advance_once))
+                
+        return moves
+
+            
+
+            
+            
 
 
 

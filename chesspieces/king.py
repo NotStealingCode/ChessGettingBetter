@@ -7,9 +7,7 @@ class King(Piece):
         self.y_coordinates = y_coordinates
         self.name = "King"
 
-    def get_possible_moves(self, allies, enemies):
+    def get_possible_moves(self, pieces_location):
         moves = []
         if self.color == "White":
-            white = allies
-            black = enemies
             
