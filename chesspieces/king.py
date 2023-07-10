@@ -9,5 +9,6 @@ class King(Piece):
 
     def get_possible_moves(self, pieces_location):
         moves = []
-        if self.color == "White":
+        enemy = "Black" if self.color == "White" else "White"
+        
             

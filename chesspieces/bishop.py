@@ -23,7 +23,8 @@ class Bishop(Piece):
             while x_on_board and y_on_board:
                 is_not_empty = board_pieces_location[y][x].name is not None
                 if is_not_empty:
-                    if board_pieces_location[y][x].color == enemy:
+                    enemy_found = board_pieces_location[y][x].color == enemy
+                    if enemy_found:
                         moves.append((x, y))
                     break
                 moves.append((x, y))
