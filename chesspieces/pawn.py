@@ -18,7 +18,7 @@ class Pawn(Piece):
         MAX_RIGHT = 7
         MAX_LEFT = 0
         if self.y_coordinates != ending_position:
-            if starting_position:
+            if self.y_coordinates == starting_position:
                 moves.append((self.x_coordinates, advance_once))
                 moves.append((self.x_coordinates, advance_twice))
             else:
@@ -42,7 +42,6 @@ class Pawn(Piece):
             
             LEFT_OFFSET = -1
             RIGHT_OFFSET = 1
-            print(moves)
             if self.x_coordinates < MAX_RIGHT:
                 if board_pieces_locations[advance_once][self.x_coordinates + RIGHT_OFFSET].name is not None:
                     attack_right = board_pieces_locations[advance_once][self.x_coordinates + RIGHT_OFFSET].color == enemy

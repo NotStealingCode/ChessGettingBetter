@@ -18,9 +18,7 @@ class Bishop(Piece):
         for i in (LEFT_OFFSET, RIGHT_OFFSET):
             y = self.y_coordinates + RIGHT_OFFSET
             x = self.x_coordinates + i
-            x_on_board = STARTING_POSITION <= x <= ENDING_POSITION
-            y_on_board = STARTING_POSITION <= y <= ENDING_POSITION
-            while x_on_board and y_on_board:
+            while STARTING_POSITION <= x <= ENDING_POSITION and STARTING_POSITION <= y <= ENDING_POSITION:
                 is_not_empty = board_pieces_location[y][x].name is not None
                 if is_not_empty:
                     enemy_found = board_pieces_location[y][x].color == enemy
@@ -34,9 +32,7 @@ class Bishop(Piece):
         for i in (LEFT_OFFSET, RIGHT_OFFSET):
             y = self.y_coordinates + LEFT_OFFSET
             x = self.x_coordinates + i
-            x_on_board = STARTING_POSITION <= x <= ENDING_POSITION
-            y_on_board = STARTING_POSITION <= y <= ENDING_POSITION
-            while x_on_board and y_on_board:
+            while STARTING_POSITION <= x <= ENDING_POSITION and STARTING_POSITION <= y <= ENDING_POSITION:
                 is_not_empty = board_pieces_location[y][x].name is not None
                 if is_not_empty:
                     if board_pieces_location[y][x].color == enemy:

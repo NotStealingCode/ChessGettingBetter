@@ -4,6 +4,7 @@ from chesspieces.knight import Knight
 from chesspieces.bishop import Bishop
 from chesspieces.queen import Queen
 from chesspieces.rook import Rook
+from chesspieces.king import King
 
 from empty import Empty
 
@@ -21,8 +22,6 @@ class Board:
             [BoardPieces.WHITE_PAWN, BoardPieces.WHITE_PAWN, BoardPieces.WHITE_PAWN, BoardPieces.WHITE_PAWN, BoardPieces.WHITE_PAWN, BoardPieces.WHITE_PAWN, BoardPieces.WHITE_PAWN, BoardPieces.WHITE_PAWN],
             [BoardPieces.WHITE_ROOK, BoardPieces.WHITE_KNIGHT, BoardPieces.WHITE_BISHOP, BoardPieces.WHITE_QUEEN, BoardPieces.WHITE_KING, BoardPieces.WHITE_BISHOP, BoardPieces.WHITE_KNIGHT, BoardPieces.WHITE_ROOK]
         ]
-        self.white_pieces = [BoardPieces.WHITE_PAWN, BoardPieces.WHITE_ROOK, BoardPieces.WHITE_KNIGHT, BoardPieces.WHITE_BISHOP, BoardPieces.WHITE_QUEEN, BoardPieces.WHITE_KING, BoardPieces.WHITE_BISHOP, BoardPieces.WHITE_KNIGHT, BoardPieces.WHITE_ROOK]
-        self.black_pieces = [BoardPieces.BLACK_ROOK, BoardPieces.BLACK_KNIGHT, BoardPieces.BLACK_BISHOP, BoardPieces.BLACK_QUEEN, BoardPieces.BLACK_KING, BoardPieces.BLACK_BISHOP, BoardPieces.BLACK_KNIGHT, BoardPieces.BLACK_ROOK, BoardPieces.BLACK_PAWN]
 
     def board_setup(self):
         for y, item in enumerate(self.board_pieces):
@@ -41,13 +40,13 @@ class Board:
                         black_pawn = Queen("Black", x, y)
                         self.board_pieces[y][x] = black_pawn
                     case BoardPieces.BLACK_KING.value:
-                        black_pawn = Pawn("Black", x, y)
+                        black_pawn = King("Black", x, y)
                         self.board_pieces[y][x] = black_pawn
                     case BoardPieces.BLACK_PAWN.value:
                         black_pawn = Pawn("Black", x, y)
                         self.board_pieces[y][x] = black_pawn
                     case BoardPieces.WHITE_ROOK.value:
-                        white_pawn = Pawn("White", x, y)
+                        white_pawn = Rook("White", x, y)
                         self.board_pieces[y][x] = white_pawn
                     case BoardPieces.WHITE_KNIGHT.value:
                         white_pawn = Knight("White", x, y)
@@ -59,7 +58,7 @@ class Board:
                         white_pawn = Queen("White", x, y)
                         self.board_pieces[y][x] = white_pawn
                     case BoardPieces.WHITE_KING.value:
-                        white_pawn = Pawn("White", x, y)
+                        white_pawn = King("White", x, y)
                         self.board_pieces[y][x] = white_pawn
                     case BoardPieces.WHITE_PAWN.value:
                         white_pawn = Pawn("White", x, y)
@@ -67,12 +66,3 @@ class Board:
                     case BoardPieces.EMPTY.value:
                         white_pawn = Empty(x, y)
                         self.board_pieces[y][x] = white_pawn
-
-
-board = Board(800, 800)
-board.board_setup()
-row_index = 1
-column_index = 3
-specific_piece = board.board_pieces[row_index][column_index]
-moveset = specific_piece.get_possible_moves(board.board_pieces)
-print(moveset)
