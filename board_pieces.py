@@ -16,3 +16,4 @@ class BoardPieces(Enum):
     WHITE_PAWN = 6
 
     EMPTY = 0
+    

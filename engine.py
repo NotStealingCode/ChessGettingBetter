@@ -70,12 +70,12 @@ def draw_pieces(current_pieces):
                     else:
                         screen.blit(black_queen, (n.x_coordinates * SIZE + CENTER_X, n.y_coordinates * SIZE + CENTER_Y))
                 
-def get_coords():
+def get_coordinates():
     coordinates_x = event.pos[0] // SIZE
     coordinates_y = event.pos[1] // SIZE
     return ((coordinates_x, coordinates_y))
 
-def get_coordinates():
+def get_selected_piece():
     coordinates_x = event.pos[0] // SIZE
     coordinates_y = event.pos[1] // SIZE
     selected_piece = board.board_pieces[coordinates_y][coordinates_x]
@@ -195,7 +195,6 @@ def is_check(enemy_moves_attack):
     return False
 
 
-
 def allowed_moves(piece, moveset):
     allowed_set = []
     for m in moveset:
@@ -231,16 +230,16 @@ while running:
     screen.blit(board_map, ORIGIN)
     draw_pieces(board.board_pieces)
     draw_moves(possible)
+    enemy_moves = acquire_enemy_moveset(white_turn)
+    current_enemy_moves = enemy_moves
     if highlight:
         highlight_selected_piece(coordinates)
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
         if event.type == pygame.MOUSEBUTTONDOWN:
-            enemy_moves = acquire_enemy_moveset(white_turn)
-            current_enemy_moves = enemy_moves
-            coordinates = get_coords()
-            piece_selected = get_coordinates()
+            coordinates = get_coordinates()
+            piece_selected = get_selected_piece()
             if piece_selected.name is not None and piece_selected.color == "White" and white_turn:
                 highlight = True
                 piece_moves = get_allowed_moves(piece_selected)
